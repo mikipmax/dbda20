@@ -15,7 +15,7 @@ public class Principal {
 		Instance<Operaciones> obj = container.select(Operaciones.class, NamedLiteral.of("operacionesImp"));
 		Operaciones servicio = obj.get();
 		// invocamos al método del servicio
-		System.out.println("Respuesta: " + servicio.sumar(5, 12));
+		System.out.println("Respuesta: " + servicio.sumar(6, 12));
 		
 	}
 
