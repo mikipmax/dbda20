@@ -7,8 +7,9 @@
  */
 
 plugins {
-    // Apply the java-library plugin to add support for Java Library
-    id 'java-library'
+    
+    id 'war'
+    id 'eclipse-wtp' //para agregarle al tomcat 
 }
 
 repositories {
@@ -18,12 +19,19 @@ repositories {
 }
 
 dependencies {
-    // This dependency is exported to consumers, that is to say found on their compile classpath.
-    api 'org.apache.commons:commons-math3:3.6.1'
+// https://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-core
+compile group: 'org.jboss.resteasy', name: 'resteasy-core', version: '4.5.5.Final'
+// https://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-servlet-initializer
+compile group: 'org.jboss.resteasy', name: 'resteasy-servlet-initializer', version: '4.5.5.Final' //Para registrar automaticamente el servlet
+//Busca una clase que extienda de Application y que tenga la anotacion @ApplicationPath
 
-    // This dependency is used internally, and not exposed to consumers on their own compile classpath.
-    implementation 'com.google.guava:guava:28.2-jre'
+// https://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-jackson2-provider
+compile group: 'org.jboss.resteasy', name: 'resteasy-jackson2-provider', version: '4.5.5.Final' //Para que soporte formato Json
 
-    // Use JUnit test framework
-    testImplementation 'junit:junit:4.12'
+//Dependencias CDI
+// https://mvnrepository.com/artifact/org.jboss.weld.servlet/weld-servlet-core
+compile group: 'org.jboss.weld.servlet', name: 'weld-servlet-core', version: '3.1.4.Final'
+compile group: 'org.jboss.resteasy', name: 'resteasy-cdi', version: '4.5.5.Final' //Para que se integren reasteasy y cdi
+
+
 }
