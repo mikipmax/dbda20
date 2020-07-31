@@ -15,5 +15,8 @@ dependencies {
 compile group: 'commons-io', name: 'commons-io', version: '2.7'
 // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
 compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.11.1'
-
+//Resteasy para el cliente
+compile group: 'org.jboss.resteasy', name: 'resteasy-client', version: '4.5.5.Final'
+// https://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-jackson2-provider
+compile group: 'org.jboss.resteasy', name: 'resteasy-jackson2-provider', version: '4.5.5.Final' //Para que soporte formato Json
 }

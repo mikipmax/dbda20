@@ -28,4 +28,10 @@ compile group: 'org.jboss.resteasy', name: 'resteasy-servlet-initializer', versi
 // https://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-jackson2-provider
 compile group: 'org.jboss.resteasy', name: 'resteasy-jackson2-provider', version: '4.5.5.Final' //Para que soporte formato Json
 
+//Dependencias CDI
+// https://mvnrepository.com/artifact/org.jboss.weld.servlet/weld-servlet-core
+compile group: 'org.jboss.weld.servlet', name: 'weld-servlet-core', version: '3.1.4.Final'
+compile group: 'org.jboss.resteasy', name: 'resteasy-cdi', version: '4.5.5.Final' //Para que integren reasteasy y cdi
+
+
 }

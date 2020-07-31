@@ -7,16 +7,14 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 @Path("/hola")
-public class HolaMundoRest {
+public class HolaMundoRest2 {
 	// http://servidor:puerto/contexto/PATH/hola/{nombre}
 	// uri efectivo: http://localhost:8080/rest01/hola/{nombre}
 	@GET
 	@Path(value = "/{nombre}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Persona hola(@PathParam("nombre") String nombre) {
-		Persona p=new Persona();
-		p.setNombre(nombre);
-		p.setMensaje("Hola ");
-		return p;
+
+		return new Persona(nombre, "Hola ");
 	}
 }

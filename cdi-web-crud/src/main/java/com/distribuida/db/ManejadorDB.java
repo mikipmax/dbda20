@@ -16,7 +16,7 @@ public class ManejadorDB {
 	 * 
 	 * @return Datasource
 	 */
-	@Produces()
+	@Produces
 	@ApplicationScoped
 	public DataSource db() {
 
