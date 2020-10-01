@@ -32,6 +32,16 @@ compile group: 'org.jboss.resteasy', name: 'resteasy-jackson2-provider', version
 // https://mvnrepository.com/artifact/org.jboss.weld.servlet/weld-servlet-core
 compile group: 'org.jboss.weld.servlet', name: 'weld-servlet-core', version: '3.1.4.Final'
 compile group: 'org.jboss.resteasy', name: 'resteasy-cdi', version: '4.5.5.Final' //Para que se integren reasteasy y cdi
+ //Jpa 
+ // https://mvnrepository.com/artifact/org.hibernate/hibernate-core
+compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.12.Final'
 
+compile group: 'org.postgresql', name: 'postgresql', version: '42.2.14'
 
+// https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api   para servlets
+providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
 }
+
+task stage(dependsOn: ['build', 'clean'])
+build.mustRunAfter clean
+

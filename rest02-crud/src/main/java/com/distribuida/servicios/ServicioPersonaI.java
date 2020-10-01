@@ -11,8 +11,8 @@ public interface ServicioPersonaI {
 
 	void crear(Persona per);
 
-	void actualizar(Persona per);
+	void actualizar(int id, Persona per);
 
-	void eliminar(Persona per);
+	void eliminar(int id);
 
 }

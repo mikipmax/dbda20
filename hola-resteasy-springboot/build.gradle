@@ -1,0 +1,22 @@
+plugins {
+	id 'org.springframework.boot' version '2.3.3.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'java'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	// https://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-spring-boot-starter
+compile group: 'org.jboss.resteasy', name: 'resteasy-spring-boot-starter', version: '4.6.2.Final'
+
+
+}
+
+

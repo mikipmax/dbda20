@@ -13,6 +13,7 @@ public class Cliente03 {
 		ResteasyClient cliente = (ResteasyClient) ClientBuilder.newClient();
 		ResteasyWebTarget target = cliente.target(URL);
 		HolaMundoService service = target.proxy(HolaMundoService.class);
+		
 		//Persona per=service.hola();
 		
 	//	System.out.println("nombre: " + per.getNombre());

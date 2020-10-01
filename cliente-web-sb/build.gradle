@@ -1,0 +1,19 @@
+plugins {
+   id 'java-library'
+    id 'war'
+    id 'eclipse-wtp'
+}
+
+repositories {
+ 
+    jcenter()
+}
+dependencies {
+	compile group: 'org.jboss.resteasy', name: 'resteasy-client', version: '4.5.5.Final'
+	compile group: 'org.jboss.resteasy', name: 'resteasy-jackson2-provider', version: '4.5.5.Final' //Para que soporte formato Json
+	compile group: 'org.jboss.weld.servlet', name: 'weld-servlet-core', version: '3.1.4.Final'
+	compile group: 'org.glassfish', name: 'javax.faces', version: '2.4.0'                   
+}
+
+task stage(dependsOn: ['build', 'clean'])
+build.mustRunAfter clean

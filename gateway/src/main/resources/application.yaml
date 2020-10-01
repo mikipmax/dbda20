@@ -1,0 +1,26 @@
+server:
+  port: 8090
+
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: personas
+        uri: http://localhost:7001/
+        predicates:
+        - Path=/personas/**
+        - Weight=group1, 5
+      - id: personas1
+        uri: http://localhost:7002/
+        predicates:
+        - Path=/personas/**
+        - Weight=group1, 5
+      - id: personas2
+        uri: http://localhost:7003/
+        predicates:
+        - Path=/personas/**
+        - Weight=group1, 5     
+      - id: direcciones
+        uri: http://localhost:8080/
+        predicates:
+        - Path=/tipoDirecciones/**

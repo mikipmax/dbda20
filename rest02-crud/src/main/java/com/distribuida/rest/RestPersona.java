@@ -45,15 +45,15 @@ public class RestPersona {
 	}
 
 	@PUT
-	@Path("/actualizar")
+	@Path("/actualizar/{id}")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void actualizar(Persona per) {
-		servicioPersonaI.actualizar(per);
+	public void actualizar(@PathParam("id") int id,Persona per) {
+		servicioPersonaI.actualizar(id, per);
 	}
 
 	@DELETE
 	@Path("/eliminar/{id}")
-	public void eliminar(Persona per) {
-		servicioPersonaI.eliminar(per);
+	public void eliminar(@PathParam("id") int id) {
+		servicioPersonaI.eliminar(id);
 	}
 }

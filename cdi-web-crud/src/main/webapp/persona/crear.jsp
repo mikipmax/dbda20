@@ -13,15 +13,17 @@
 
 			<label for="id">Id</label> <input type="number" name="id" required><br />
 			<br /> <label for="nombre">Nombre</label> <input type="text"
-				name="nombre"><br />
-			<br /> <label for="direccion">Direccion</label> <input type="text" name="direccion"><br />
-			<br /> <label for="correo">Email</label> <input type="email"
-				name="correo"> <br /><br />
+				name="nombre"><br /> <br /> <label for="direccion">Direccion</label>
+			<input type="text" name="direccion"><br /> <br /> <label
+				for="correo">Email</label> <input type="email" name="correo">
+			<br />
+			<br />
 			<button type="submit">Insertar</button>
 			<br />
 
 
 		</form>
+	
 		<br /> <a href="${pageContext.request.contextPath}/index.jsp">Regresar</a>
 	</div>
 </body>

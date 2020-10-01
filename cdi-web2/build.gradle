@@ -29,7 +29,6 @@ providedCompile group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0
 compile group: 'org.postgresql', name: 'postgresql', version: '42.2.14'
 
 
-// https://mvnrepository.com/artifact/org.apache.commons/commons-dbcp2  para el pool de conexiones
-compile group: 'org.apache.commons', name: 'commons-dbcp2', version: '2.7.0'
+
 
 }

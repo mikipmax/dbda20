@@ -1,0 +1,13 @@
+server:
+    port: 7001
+# lo configuramos por default, para otras instancias le enviamos el parametros desde consola
+#Todos los valores están en el servidor de configuración
+javax:
+    sql:
+        DataSource:
+            practicaDataSource:
+                dataSourceClassName: 
+                dataSource:
+                    databaseName:
+                    user: 
+                    password:

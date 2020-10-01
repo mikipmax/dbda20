@@ -1,0 +1,46 @@
+
+plugins {
+   
+    id 'java-library'
+  
+    id 'com.github.johnrengelman.shadow' version '6.0.0'
+       id 'io.freefair.lombok' version '5.1.0'
+}
+
+repositories {
+    
+    jcenter()
+}
+
+ext {
+helidonversion= '2.0.1'
+}
+dependencies {
+// import Helidon dependency management
+    implementation platform("io.helidon:helidon-dependencies:${project.helidonversion}")
+// https://mvnrepository.com/artifact/io.helidon.microprofile.server/helidon-microprofile-server
+	compile group: 'io.helidon.microprofile.server', name: 'helidon-microprofile-server', version: '2.0.1'
+	
+	
+compile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '2.31'
+// https://mvnrepository.com/artifact/org.glassfish.jersey.media/jersey-media-json-binding
+compile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-binding', version: '2.31'
+compile group: 'org.microprofile-ext.config-ext', name: 'configsource-consul', version: '1.0.9'
+}
+
+jar {
+	manifest {
+
+	attributes "Main-Class":"io.helidon.microprofile.server.Main" 
+	}
+}
+
+task copyLibs(type: Copy){
+group 'build'
+from configurations.runtimeClasspath
+into 'build/libs/lib'
+}
+
+shadowJar{
+	mergeServiceFiles()
+}

@@ -1,0 +1,33 @@
+
+plugins {
+   
+    id 'java-library'
+  
+    id 'com.github.johnrengelman.shadow' version '6.0.0'
+       id 'io.freefair.lombok' version '5.1.0'
+}
+
+repositories {
+    
+    jcenter()
+}
+
+ext {
+helidonversion= '2.0.1'
+}
+dependencies {
+
+compile group: 'com.ecwid.consul', name: 'consul-api', version: '1.4.5'
+//tambien hay consul-client
+compile group: 'org.jboss.resteasy', name: 'resteasy-client', version: '4.5.5.Final'
+
+
+}
+
+jar {
+	manifest {
+
+	attributes "Main-Class":"io.helidon.microprofile.server.Main" 
+	}
+}
+

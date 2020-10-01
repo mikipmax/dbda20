@@ -50,7 +50,7 @@ public class PersonaServicioImpl implements PersonaServicioI {
 			}
 
 		}
-
+		System.out.println(lista+"-------------------------------------");
 		return lista;
 	}
 

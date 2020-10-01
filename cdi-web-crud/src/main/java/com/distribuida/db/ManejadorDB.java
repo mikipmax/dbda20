@@ -37,6 +37,9 @@ public class ManejadorDB {
 
 			ds.setDriverClassName("org.postgresql.Driver");
 			ds.setUrl(dbUrl);
+			System.out.println(dbUrl); 
+			System.out.println(username); 
+			System.out.println(password); 
 			ds.setUsername(username);
 			ds.setPassword(password);
 		} catch (URISyntaxException e) {

@@ -1,0 +1,62 @@
+
+plugins {
+
+    id 'java-library'
+    
+    id "it.gianluz.capsule" version "1.0.3"
+}
+
+repositories {
+  
+    jcenter()
+}
+
+ext {
+helidonversion= '2.0.2'
+}
+dependencies {
+// import Helidon dependency management
+    implementation platform("io.helidon:helidon-dependencies:${project.helidonversion}")
+// https://mvnrepository.com/artifact/io.helidon.microprofile.server/helidon-microprofile-server
+compile group: 'io.helidon.microprofile.server', name: 'helidon-microprofile-server', version: '2.0.1'
+	
+// https://mvnrepository.com/artifact/io.helidon.integrations.cdi/helidon-integrations-cdi-datasource-hikaricp
+compile group: 'io.helidon.integrations.cdi', name: 'helidon-integrations-cdi-datasource-hikaricp', version: '2.0.2'
+// https://mvnrepository.com/artifact/io.helidon.integrations.cdi/helidon-integrations-cdi-jta-weld
+compile group: 'io.helidon.integrations.cdi', name: 'helidon-integrations-cdi-jta-weld', version: '2.0.2'
+
+// https://mvnrepository.com/artifact/org.postgresql/postgresql
+compile group: 'org.postgresql', name: 'postgresql', version: '42.2.16'
+// https://mvnrepository.com/artifact/io.helidon.integrations.cdi/helidon-integrations-cdi-eclipselink
+compile group: 'io.helidon.integrations.cdi', name: 'helidon-integrations-cdi-eclipselink', version: '2.0.2'
+compile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '2.31'
+
+// https://mvnrepository.com/artifact/io.helidon.integrations.cdi/helidon-integrations-cdi-jpa
+runtime group: 'io.helidon.integrations.cdi', name: 'helidon-integrations-cdi-jpa', version: '2.0.2'
+//Repara bug de integración de cdi con jpa
+
+// https://mvnrepository.com/artifact/org.glassfish.jaxb/jaxb-runtime
+compile group: 'org.glassfish.jaxb', name: 'jaxb-runtime', version: '2.3.3'
+
+
+    //Pare registrar nuesto servicio en consul
+     compile group: 'com.ecwid.consul', name: 'consul-api', version: '1.4.5'
+     //Aunq reconoce el importe de librerías, es obligatorio ponerlo para que se logre habilitar el microprofile y usar las variables de consul
+compile group: 'org.microprofile-ext.config-ext', name: 'configsource-consul', version: '1.0.9'
+}
+
+
+
+task copyLibs(type: Copy){
+	from configurations.runtime
+	into 'build/libs/libs'
+}
+
+task ejecutable(type:FatCapsule){
+	group = 'build'
+	applicationClass 'io.helidon.microprofile.server.Main'
+	capsuleManifest{
+		applicationName='helidon-app01' 
+	}
+	
+}

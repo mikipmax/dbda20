@@ -1,0 +1,39 @@
+plugins {
+
+    id 'java-library'
+    id 'com.github.johnrengelman.shadow' version '6.0.0'
+    //id "io.freefair.lombok" version '5.1.0'
+}
+
+repositories {
+    jcenter()
+}
+
+ext{
+	helidonVersion="2.0.1"
+}
+
+dependencies {
+     implementation platform("io.helidon:helidon-dependencies:${helidonVersion}")
+
+     compile group: 'io.helidon.microprofile.server', name: 'helidon-microprofile-server'
+ 
+     compile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '2.31'
+
+     compile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-binding', version: '2.31'
+     
+
+     //Pare registrar nuesto servicio en consul
+     compile group: 'com.ecwid.consul', name: 'consul-api', version: '1.4.5'
+     //tambien hay consul-client
+}
+
+jar{
+	manifest{
+		//Se coloca la clase que que se ejecuto con el main
+		attributes "Main-Class":"io.helidon.microprofile.server.Main"
+	}
+}
+shadowJar{
+	mergeServiceFiles()
+}

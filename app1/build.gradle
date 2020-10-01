@@ -1,0 +1,64 @@
+
+plugins {
+
+    id 'java-library'
+    
+    id "it.gianluz.capsule" version "1.0.3"
+}
+
+repositories {
+  
+    jcenter()
+}
+
+ext {
+helidonversion= '2.0.2'
+}
+dependencies {
+
+    implementation platform("io.helidon:helidon-dependencies:${project.helidonversion}")
+
+compile group: 'io.helidon.microprofile.server', name: 'helidon-microprofile-server', version: '2.0.1'
+	
+
+compile group: 'io.helidon.integrations.cdi', name: 'helidon-integrations-cdi-datasource-hikaricp', version: '2.0.2'
+
+compile group: 'io.helidon.integrations.cdi', name: 'helidon-integrations-cdi-jta-weld', version: '2.0.2'
+
+
+compile group: 'org.postgresql', name: 'postgresql', version: '42.2.16'
+
+compile group: 'io.helidon.integrations.cdi', name: 'helidon-integrations-cdi-eclipselink', version: '2.0.2'
+compile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '2.31'
+
+
+runtime group: 'io.helidon.integrations.cdi', name: 'helidon-integrations-cdi-jpa', version: '2.0.2'
+//Repara bug de integración de cdi con jpa
+compile group: 'org.glassfish.jaxb', name: 'jaxb-runtime', version: '2.3.3'
+
+
+compile group: 'org.microprofile-ext.config-ext', name: 'configsource-consul', version: '1.0.9'
+
+compile group: 'org.jboss.resteasy', name: 'resteasy-client', version: '4.5.5.Final'
+
+compile group: 'org.jboss.resteasy', name: 'resteasy-jackson2-provider', version: '4.5.5.Final' //Para que soporte formato Json
+
+
+compile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '2.29.1'
+}
+
+
+
+task copyLibs(type: Copy){
+	from configurations.runtime
+	into 'build/libs/libs'
+}
+
+task ejecutable(type:FatCapsule){
+	group = 'build'
+	applicationClass 'io.helidon.microprofile.server.Main'
+	capsuleManifest{
+		applicationName='app1' 
+	}
+	
+}

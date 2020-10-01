@@ -1,7 +1,24 @@
 package com.distribuida.dto;
 
-public class Persona {
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.ValueGenerationType;
+@Entity
+@Table(name = "persona")
+@NamedQueries({ @NamedQuery(name = "Persona.findAll", query = "select p from Persona p") })
+public class Persona implements Serializable{
 	//Autogenerado-Serial
+	@Id
+	
 	private int id;
 	private String nombre;
 	private String direccion;
