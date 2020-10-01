@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui"
+      >
+
+    <h:head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>MCBANK</title>
+        <f:event  type="preRenderView" listener="#{plantillaController.verificarSesionCliente()}"/>
+        <!-- Bootstrap core CSS -->
+        <link href="resources/css/bootstrap.min.css" rel="stylesheet"/>
+        <!--external css-->
+        <link href="resources/font-awesome/css/font-awesome.css" rel="stylesheet" />
+        <!-- Custom styles for this template -->
+        <link href="resources/css/style_3.css" rel="stylesheet"/>
+        <link href="resources/css/style-responsive.css" rel="stylesheet"/>
+    </h:head>
+
+    <h:body>
+
+        <section id="container">
+            <!-- **********************************************************************************************************************************************************
+                TOP BAR CONTENT & NOTIFICATIONS
+                *********************************************************************************************************************************************************** -->
+            <!--header start-->
+            <header class="header black-bg">
+                <div class="sidebar-toggle-box">
+                    <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+                </div>
+                <!--logo start-->
+                <a href="Cliente.xhtml" class="logo"><b>MC<span>BANK</span></b></a>
+                <!--logo end-->
+                <div class="nav notify-row" id="top_menu">
+                    <!--  notification start -->
+                    <ul class="nav top-menu">
+                        <!-- settings start -->
+                        <li class="dropdown">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
+                                <i class="fa fa-tasks"></i>
+
+                            </a>
+                            <ul class="dropdown-menu extended tasks-bar">
+                                <div class="notify-arrow notify-arrow-green"></div>
+                            </ul>
+                        </li>
+                        <!-- settings end -->
+                        <!-- inbox dropdown start-->
+                        <li id="header_inbox_bar" class="dropdown">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
+                                <i class="fa fa-envelope-o"></i>
+                            </a>
+                            <ul class="dropdown-menu extended inbox">
+                                <div class="notify-arrow notify-arrow-green"></div>
+                            </ul>
+                        </li>
+                        <!-- inbox dropdown end -->
+                        <!-- notification dropdown start-->
+                        <li id="header_notification_bar" class="dropdown">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
+                                <i class="fa fa-bell-o"></i>
+                            </a>
+                            <ul class="dropdown-menu extended notification">
+                                <div class="notify-arrow notify-arrow-yellow"></div>
+                            </ul>
+                        </li>
+                        <!-- notification dropdown end -->
+                    </ul>
+                    <!--  notification end -->
+                </div>
+                <div class="top-menu">
+                    <ul class="nav pull-right top-menu">
+                        <li>  
+
+                            <h:form style="padding: 12px">
+
+                                <b:commandButton  class="btn-clear-g" id="btnCerrarS1" value="Salir" 
+                                                  actionListener="#{plantillaController.cerrarSesion()}" ajax="false" 
+                                                  action="/home?faces-redirect=true"  >
+
+                                </b:commandButton>
+                            </h:form>
+                        </li>
+                    </ul>
+                </div>
+            </header>
+            <!--header end-->
+            <!-- **********************************************************************************************************************************************************
+                MAIN SIDEBAR MENU
+                *********************************************************************************************************************************************************** -->
+            <!--sidebar start-->
+            <aside>
+                <div id="sidebar" class="nav-collapse ">
+                    <!-- sidebar menu start-->
+                    <ul class="sidebar-menu" id="nav-accordion">
+                        <!--<p class="centered"><a href="profile.html"><img src="" class="img-circle" width="80"></a></p>-->
+
+                        <li class="mt">
+                            <a href="CliPerfil.xhtml">
+                                <i class="fa fa-user-secret"></i>
+                                <span>Mi Perfil</span>
+                            </a>
+                        </li>
+                        <li class="sub-menu">
+                            <a href="CliDatosFinancieros.xhtml">
+                                <i class="fa fa-users"></i>
+                                <span>Datos Financieros</span>
+                            </a>
+
+                        </li>
+                          <li class="sub-menu">
+                            <a href="CliSolCredito.xhtml">
+                                <i class="fa fa-users"></i>
+                                <span>Solicitar Crédito</span>
+                            </a>
+
+                        </li>
+                        <li class="sub-menu">
+                            <!--<a class="active" href="javascript:;">-->
+                            <a href="CliListarCreditos.xhtml">
+                                <i class="fa fa-line-chart"></i>
+                                <span>Mis Créditos</span>
+                            </a>
+
+                        </li>
+
+
+                    </ul>
+                    <!-- sidebar menu end-->
+                </div>
+            </aside>
+            <!--sidebar end-->
+            <!-- **********************************************************************************************************************************************************
+                MAIN CONTENT
+                *********************************************************************************************************************************************************** -->
+            <!--main content start-->
+            <section id="main-content">
+                <section class="wrapper site-min-height">
+
+                    <div class="row mt">
+                        <div class="col-lg-12">
+
+                            <div class="container-fluid">
+                                <h:form id="EditDF">
+                                    <h1>DATOS FINANCIEROS</h1>
+                                    <b:panelGrid columns="3" >
+                                        <b:inputText value="#{ManagedBeans.ingreso}" disabled="true" required="true" label="Ingresos:"/>
+                                        <b:inputText value="#{ManagedBeans.egreso}" disabled="true" required="true" label="Egresos:"/>
+                                        <b:inputText value="#{ManagedBeans.capPago}" disabled="true" required="true" label="Capacidad de Pago:"/>
+                                    </b:panelGrid>
+                                    <!--<b:commandButton value="Editar" id="btnCliente" actionListener="{ManagedBeans.editarClienteDF()}" update="EditDF" />-->
+                                </h:form>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="container-fluid">
+                                <h:form id="EditI">
+                                    <h1>DETALLE INGRESOS</h1>
+                                    <b:panelGrid columns="1" >
+                                        <b:inputText value="#{ManagedBeans.ingreso}" disabled="false" required="true" label="Salario/Sueldo:"/>
+                                    </b:panelGrid>
+                                    <b:commandButton value="Editar Ingreso" id="btnCliente" actionListener="#{ManagedBeans.editarClienteDF()}" update="EditI,:EditDF" />
+                                </h:form>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="container-fluid">
+                                <h:form id="EditE">
+                                    <h1>DETALLE EGRESOS</h1>
+                                    <b:panelGrid columns="1" >
+                                        <b:inputText value="#{ManagedBeans.egrAlim}" disabled="false" required="true" label="Alimentación"/>
+                                        <b:inputText value="#{ManagedBeans.egrSB}" disabled="false" required="true" label="Servicios Básicos:"/>
+                                        <b:inputText value="#{ManagedBeans.egrTrans}" disabled="false" required="true" label="Transporte:"/>
+                                        <b:inputText value="#{ManagedBeans.egrCoutaOC}" disabled="false" required="false" label="Cuota de otros créditos:"/>
+                                        <b:inputText value="#{ManagedBeans.egrPagoTC}" disabled="false" required="false" label="Pago Tarjeta de Crédito:"/>
+                                    </b:panelGrid>
+                                    <b:commandButton value="Editar Egresos" id="btnCliente" actionListener="#{ManagedBeans.editarDetalleEgreso()}" update="EditE,:EditDF" />
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- /wrapper -->
+            </section>
+            <!-- /MAIN CONTENT -->
+            <!--main content end-->
+            <!--footer start-->
+            <footer class="site-footer">
+
+
+                <a href="blank.html#" class="go-top">
+                    <i  class="fa fa-angle-up"></i>
+                </a>
+
+            </footer>
+            <!--footer end-->
+        </section>
+        <!-- js placed at the end of the document so the pages load faster -->
+
+        <script src="resources/js/bootstrap.min.js"></script>
+        <script src="resources/js/jquery-ui-1.9.2.custom.min.js"></script>
+        <script src="resources/js/jquery.ui.touch-punch.min.js"></script>
+        <script class="include" type="text/javascript" src="resources/js/jquery.dcjqaccordion.2.7.js"></script>
+        <script src="resources/js/jquery.scrollTo.min.js"></script>
+        <script src="resources/js/jquery.nicescroll.js" type="text/javascript"></script>
+        <!--common script for all pages-->
+        <script src="resources/js/common-scripts.js"></script>
+        <!--script for this page-->
+    </h:body>
+</html>

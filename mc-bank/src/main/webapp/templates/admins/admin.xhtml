@@ -1,0 +1,198 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{ManagedEmpleado.init()}" />
+
+    </f:metadata>
+    <h:head>
+        <meta charset="utf-8"></meta>
+        <!--<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>-->
+        <title>MCBANK</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+        <!--<link href="./../../resources/css/bootstrap.min.css" rel="stylesheet"></link>-->
+        <!--<link href="./../../resources/css/bootstrap.min.css" rel="stylesheet"></link>-->
+        <h:outputStylesheet library="css" name="bootstrap.min.css"/>
+        <!--<link href="./../../assets/css/font-awesome.min.css" rel="stylesheet"></link>-->
+        <h:outputStylesheet name="./../resources/font-awesome/css/font-awesome.css"/>
+        <link href="./../../resources/css/style-responsive.css" rel="stylesheet"></link>
+        <!--<link href="./../../resources/css/style_2.css" rel="stylesheet"></link>-->
+        <h:outputStylesheet library="css" name="style_2.css"/>
+    </h:head>
+
+    <h:body>
+
+
+        <div id="top" class="top">
+            <!--<section class="container">-->
+            <ui:insert name="top">
+                <div class="container">
+                    <!-- **********************************************************************************************************************************************************
+                TOP BAR CONTENT & NOTIFICATIONS
+                *********************************************************************************************************************************************************** -->
+                    <!--header start-->
+                    <header class="header black-bg">
+                        <div class="sidebar-toggle-box">
+                            <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+                        </div>
+                        <!--logo start-->
+                        <a href="inicio.xhtml" class="logo"><b>MC<span>BANK</span></b></a>
+                        <!--logo end-->
+                        <div class="nav notify-row" id="top_menu">
+                            <!--  notification start -->
+                            <ul class="nav top-menu">
+                                <!-- settings start -->
+                                <li class="dropdown">
+                                    <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:;">
+                                        <i class="fa fa-tasks"></i>
+
+                                    </a>
+                                    <ul class="dropdown-menu extended tasks-bar">
+                                        <div class="notify-arrow notify-arrow-green"></div>
+                                    </ul>
+                                </li>
+                                <!-- settings end -->
+                                <!-- inbox dropdown start-->
+                                <li id="header_inbox_bar" class="dropdown">
+                                    <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:;">
+                                        <i class="fa fa-envelope-o"></i>
+                                    </a>
+                                    <ul class="dropdown-menu extended inbox">
+                                        <div class="notify-arrow notify-arrow-green"></div>
+                                    </ul>
+                                </li>
+                                <!-- inbox dropdown end -->
+                                <!-- notification dropdown start-->
+                                <li id="header_notification_bar" class="dropdown">
+                                    <a data-toggle="dropdown" class="dropdown-toggle" href="javascript:;">
+                                        <i class="fa fa-bell-o"></i>
+                                    </a>
+                                    <ul class="dropdown-menu extended notification">
+                                        <div class="notify-arrow notify-arrow-yellow"></div>
+                                    </ul>
+                                </li>
+                                <!-- notification dropdown end -->
+                            </ul>
+                            <!--  notification end -->
+                        </div>
+                        <div class="top-menu">
+                            <ul class="nav pull-right top-menu">
+                                <li><a class="logout" href="./../../inicio.xhtml">Salir</a></li>
+
+                            </ul>
+                        </div>
+                    </header>
+                    <!--header end-->
+                </div>
+            </ui:insert>
+            <!--</section>-->
+        </div>
+        <div>
+            <div id="left">
+                <!--<div class="container">-->
+                <ui:insert name="left">
+
+                    <!-- **********************************************************************************************************************************************************
+    MAIN SIDEBAR MENU
+    *********************************************************************************************************************************************************** -->
+                    <!--sidebar start-->
+                    <div id="sidebar" class="nav-collapse ">
+                        <!-- sidebar menu start-->
+                        <ul class="sidebar-menu" id="nav-accordion">
+                            <!--<p class="centered"><a href="profile.html"><img src="" class="img-circle" width="80"></a></p>-->
+
+                            <li class="mt">
+                                <a href="perfil.xhtml">
+                                    <i class="fa fa-user-secret"></i>
+                                    <span>Mi Perfil</span>
+                                </a>
+                            </li>
+                            <li class="sub-menu">
+                                <a href="javascript:;">
+                                    <i class="fa fa-users"></i>
+                                    <span>Clientes</span>
+                                </a>
+                                <ul class="sub">
+                                    <li><a href="inicio.html">General</a></li>
+                                </ul>
+                            </li>
+                            <li class="sub-menu">
+                                <a href="javascript:;">
+                                    <i class="fa fa-binoculars"></i>
+                                    <span>Empleados</span>
+                                </a>
+                                <ul class="sub">
+                                    <li><a href="emp.xhtml">Grids</a></li>
+                                </ul>
+                            </li>
+                            <li class="sub-menu">
+                                <!--<a class="active" href="javascript:;">-->
+                                <a href="javascript:;">
+                                    <i class="fa fa-line-chart"></i>
+                                    <span>Negocio</span>
+                                </a>
+                                <ul class="sub">
+                                    <!--<li class="active"><a href="blank.html">Blank Page</a></li>-->
+                                    <li><a href="cargos.xhtml">Blank Page</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <!-- sidebar menu end-->
+                    </div>
+                    <!--sidebar end-->
+
+                </ui:insert>
+                <!--</div>-->
+            </div>
+            <div id="content" class="left_content">
+
+                <!--main content start-->
+
+                <section id="main-content">
+
+                    <section class="wrapper site-min-height">
+                        <ui:insert name="content">
+
+                        </ui:insert>
+                    </section>
+                    <!-- /wrapper -->
+
+                </section>
+
+                <!-- /MAIN CONTENT -->
+                <!--main content end-->
+
+            </div>
+        </div>
+
+
+        <!--footer start-->
+        <footer class="site-footer">
+
+        </footer>
+
+
+
+
+        <!--        <script src="./../../resources/js/bootstrap.min.js"/>
+                <script src="./../../resources/js/jquery-ui-1.9.2.custom.min.js"/>
+                <script src="./../../resources/js/jquery.dcjqaccordion.2.7.js"/>
+                <script src="./../../resources/js/jquery.scrollTo.min.js"/>
+                <script src="./../../resources/js/jquery.nicescroll.js"/>
+                <script src="./../../resources/js/common-scripts.js"/>-->
+        <h:outputScript library="js" name="bootstrap.min.js"/>
+        <h:outputScript library="js" name="jquery-ui-1.9.2.custom.min.js"/>
+        <script class="include" type="text/javascript" src="./../../resources/js/jquery.dcjqaccordion.2.7.js"></script>
+        <h:outputScript library="js" name="jquery.dcjqaccordion.2.7.js"/>
+        <h:outputScript library="js" name="jquery.scrollTo.min.js"/>
+        <h:outputScript library="js" name="jquery.nicescroll.js"/>
+        <h:outputScript library="js" name="common-scripts.js"/>
+
+    </h:body>
+
+</html>

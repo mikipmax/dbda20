@@ -1,0 +1,300 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+    >
+
+
+
+    <h:head>
+        <meta charset="utf-8"></meta>
+        <meta name="viewport"    content="width=device-width, initial-scale=1.0"></meta>
+        <meta name="description" content=""></meta>
+        <meta name="author"      content="Sergey Pozhilov (GetTemplate.com)"></meta>
+        <title>BootsFaces Basic Page</title>
+
+        <link rel="shortcut icon" href="assets/images/gt_favicon.png"></link>
+        <link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700"></link>
+
+        <link rel="stylesheet" href="assets/css/font-awesome.min.css"></link>
+        <!--      <link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" ></link>-->
+        <link rel="stylesheet" href="assets/css/main.css"></link>
+        <link rel="stylesheet" href="assets/css/misEstilos_2.css" media="screen"></link>
+    </h:head>
+    <h:body>
+
+        <div class="navbar navbar-inverse navbar-fixed-top" >
+            <div class="container">
+                <div class="navbar-header">
+                    <!-- Button for smallest screens -->
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                    <a class="navbar-brand" href="home.xhtml"><img src="assets/images/mcbank12.png" alt="Progressus HTML5 template"></img></a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav pull-right">
+                         <li><a href="home.xhtml">Inicio</a></li>
+                        <li><a href="simulador_2.xhtml">Simulador</a></li>
+                        <li><a href="requisitos.xhtml">Requisitos</a></li>
+                        <li><a class="btn" href="signin.xhtml">INICIAR SESIÓN</a></li>
+
+
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </div> 
+        <!-- /.navbar -->
+
+        <header id="head" class="secondary"></header>
+
+        <!-- container -->
+        <div class="container">
+
+            <ol class="breadcrumb">
+                <li><a href="index.html">Inicio</a></li>
+                <li class="active">Registro de Usuario</li>
+            </ol>
+
+            <div class="row">
+
+                <!-- Article main content -->
+                <article class="col-xs-12 maincontent">
+                    <header class="page-header">
+                        <h1 class="page-title" align="center">Formulario de Registro</h1>
+                    </header>
+
+                    <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+
+                                <p class="text-center text-muted">Si ya posee una cuenta , <a href="signin.xhtml">Inicie Sesión</a>.</p>
+                                <hr></hr>
+
+                                <h:form id="miRegistro">
+                                    
+                                    <div class=" top-margin">
+
+                                        <b:inputText  id="txtCedula"
+                                                      placeholder="Ingrese su número de cédula"  value="#{ManagedCliente.persona.dni}"
+                                                      required="true" label="Número de cédula" maxlength="10" >
+
+                                        </b:inputText>
+                                        <b:message for="txtCedula"/>
+
+                                    </div>
+                                    <div class="row top-margin">
+                                        <div class="col-sm-6">
+                                            <b:inputText id="txtNombres"
+                                                         placeholder="Ingrese sus nombres"  value="#{ManagedCliente.persona.nombre}"
+                                                         required="true" label="Nombres"  >
+
+                                            </b:inputText>
+                                            <b:message for="txtNombres"/>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <b:inputText id="txtApellidos"
+                                                         placeholder="Ingrese sus apellidos"  value="#{ManagedCliente.persona.apellido}"
+                                                         required="true" label="Apellidos" >
+
+                                            </b:inputText>
+                                            <b:message for="txtApellidos"/>
+                                        </div>
+                                    </div>
+
+
+
+
+
+
+
+
+
+                                    <div class="top-margin">
+
+                                        <label>Género</label>
+                                        <p:selectOneRadio value="#{ManagedCliente.persona.genero}" styleClass="custom-control-input" required="true" >
+
+
+                                            <f:selectItem itemLabel="Masculino" itemValue="M" />
+                                            <f:selectItem itemLabel="Femenino" itemValue="F"  />
+
+                                        </p:selectOneRadio>
+
+
+                                    </div>
+
+                                    <div class="row top-margin">
+                                        <div class="col-sm-6">
+                                            <b:inputText  id="txtTelefono"
+                                                          placeholder="Ingrese su número de teléfono"  value="#{ManagedCliente.persona.telefono}"
+                                                          label="Número de teléfono"  >
+
+                                            </b:inputText>
+
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <b:inputText id="txtCelular" 
+                                                         placeholder="Ingrese su número de celular"  value="#{ManagedCliente.persona.celular}"
+                                                         required="true" label="Número de celular" >
+
+                                            </b:inputText>
+                                            <b:message for="txtCelular"/>
+                                        </div>
+                                    </div>
+                                    <div class="top-margin">
+                                        <b:inputText id="txtCorreo"
+                                                     placeholder="Ingrese su correo electrónico"  value="#{ManagedCliente.persona.email}"
+                                                     label="Correo electrónico" >
+
+                                        </b:inputText>
+
+                                    </div>
+
+                                    <div class="top-margin">
+                                        <b:inputText id="txtUsuario"
+                                                     placeholder="Ingrese un usuario"  value="#{ManagedCliente.credenciales.usuario}"
+                                                     required="true" label="Usuario" >
+
+                                        </b:inputText>
+                                        <b:message for="txtUsuario"/>
+                                    </div>
+
+                                    <div class="row top-margin">
+                                        <div class="col-sm-6">
+                                            <p:outputLabel value="Clave *" />
+                                            <p:password  styleClass="form-control" id="txtClave"  placeholder="Ingrese una clave"
+                                                         value="#{ManagedCliente.credenciales.clave}"
+                                                         required="true"  match="txtClave2" validatorMessage="Las claves no coinciden" feedback="true" >
+
+                                            </p:password>
+
+                                            <b:message for="txtClave"/>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <p:outputLabel value="Reingreso de Clave *"/>
+                                            <p:password styleClass="form-control" id="txtClave2" placeholder="Reingrese la clave" label="Comprobación de clave" />
+
+
+                                        </div>
+                                    </div>
+
+
+                                    <hr></hr>
+
+                                    <div class="row">
+
+                                        <div class="col-lg-8">
+
+                                            <b:selectBooleanCheckbox  id="Terminos" required="true" caption="He leido los Términos y condiciones" />
+
+                                            <b:message for="Terminos" />
+                                        </div>
+                                        <div class="col-lg-4 text-right">
+
+                                            <b:commandButton  class="btn btn-secondary " id="btnRegCli" value="Registrar" action="#{ManagedCliente.grabarPersona()}" ajax="false" update="miRegistro"  ></b:commandButton>
+
+                                        </div>
+                                    </div>
+
+
+
+                                </h:form>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </article>
+                <!-- /Article -->
+
+            </div>
+        </div>	<!-- /container -->
+
+
+        <footer id="footer" class="top-space">
+
+            <div class="footer1">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-md-3 widget">
+                            <h3 class="widget-title">Contact</h3>
+                            <div class="widget-body">
+                                <p>+234 23 9873237<br></br>
+                                    <a href="mailto:#">some.email@somewhere.com</a><br></br>
+                                    <br></br>
+                                    234 Hidden Pond Road, Ashland City, TN 37015
+                                </p>	
+                            </div>
+                        </div>
+
+                        <div class="col-md-3 widget">
+                            <h3 class="widget-title">Follow me</h3>
+                            <div class="widget-body">
+                                <p class="follow-me-icons clearfix">
+                                    <a href=""><i class="fa fa-twitter fa-2"></i></a>
+                                    <a href=""><i class="fa fa-dribbble fa-2"></i></a>
+                                    <a href=""><i class="fa fa-github fa-2"></i></a>
+                                    <a href=""><i class="fa fa-facebook fa-2"></i></a>
+                                </p>	
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 widget">
+                            <h3 class="widget-title">Text widget</h3>
+                            <div class="widget-body">
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi, dolores, quibusdam architecto voluptatem amet fugiat nesciunt placeat provident cumque accusamus itaque voluptate modi quidem dolore optio velit hic iusto vero praesentium repellat commodi ad id expedita cupiditate repellendus possimus unde?</p>
+                                <p>Eius consequatur nihil quibusdam! Laborum, rerum, quis, inventore ipsa autem repellat provident assumenda labore soluta minima alias temporibus facere distinctio quas adipisci nam sunt explicabo officia tenetur at ea quos doloribus dolorum voluptate reprehenderit architecto sint libero illo et hic.</p>
+                            </div>
+                        </div>
+
+                    </div> <!-- /row of widgets -->
+                </div>
+            </div>
+
+            <div class="footer2">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-md-6 widget">
+                            <div class="widget-body">
+                                <p class="simplenav">
+                                    <a href="#">Home</a> | 
+                                    <a href="about.html">About</a> |
+                                    <a href="sidebar-right.html">Sidebar</a> |
+                                    <a href="contact.html">Contact</a> |
+                                    <b><a href="signup.html">Sign up</a></b>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 widget">
+                            <div class="widget-body">
+                                <p class="text-right">
+                                    Copyright &copy; 2014, Your name. Designed by <a href="http://gettemplate.com/" rel="designer">gettemplate</a> 
+                                </p>
+                            </div>
+                        </div>
+
+                    </div> <!-- /row of widgets -->
+                </div>
+            </div>
+        </footer>	
+
+
+
+
+
+        <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+        <script src="assets/js/headroom.min.js"></script>
+        <script src="assets/js/jQuery.headroom.min.js"></script>
+        <script src="assets/js/template.js"></script>
+
+    </h:body>
+</html>

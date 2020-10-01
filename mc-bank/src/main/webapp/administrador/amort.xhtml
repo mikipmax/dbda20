@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+
+    <h:body>
+
+        <ui:composition template="./../../templates/admins/admin.xhtml">
+
+            <ui:define name="content">
+
+                <br></br>
+                <div class="container-fluid">
+
+                    <b:panelGrid id="ss" columns="2" >
+
+
+                        <b:column>
+
+
+
+                            <div class="form-group">
+                                <h1 align="center">GESTIONAR TIPOS DE AMORTIZACIÓN</h1>
+                            </div>
+                            <h:form id="crearTAmortizacion">
+                                <br></br>
+                                <h2>Crear Tipo de Amortización</h2>
+
+
+                                <h:panelGrid columns="1" >
+
+
+                                    <b:inputText value="#{ManagedTam.tipoAmortizacion.idTipoAmortizacion}" required="true" label="id de tipo amortización:"/>
+
+                                    <b:inputText value="#{ManagedTam.tipoAmortizacion.tipoAmortizacion}" required="true" label="Tipo de amortización:"/>
+
+
+
+                                    <b:commandButton value="Registrar" id="btnCliente" actionListener="#{ManagedTam.grabarTAmortizacion()}" update="crearTAmortizacion,listarTam" />
+
+                                </h:panelGrid>
+
+
+
+                                <br></br>
+
+                            </h:form>
+                            <h:form id="listarTam" >
+                                <h2>Listar/Editar Tipo de Amortización</h2>
+                                <b:dataTable value="#{ManagedTam.listaTAmortizacion}" var="tAmorti">
+                                    <b:dataTableColumn value="#{tAmorti.idTipoAmortizacion}"/>
+                                    <b:dataTableColumn value="#{tAmorti.tipoAmortizacion}"/>
+                                    <b:dataTableColumn  value="#{tAmorti.habilitado==true?'Si':'No'}"  label="Habilitado" />
+                                    <b:dataTableColumn label="Editar Registros"   >
+                                        <b:commandButton value="Editar" actionListener="#{ManagedTam.leerFilaTam(tAmorti)}" oncomplete="$('.modalPseudoClass').modal();" update="myFormTam"/>
+                                    </b:dataTableColumn>
+
+
+                                </b:dataTable>
+
+
+                            </h:form>
+
+                            <h:form id="myFormTam">
+                                <b:modal id="amodal2" title="Editar Tipo de Amortización" styleClass="modalPseudoClass"
+                                         closable="false"  close-on-escape="false" backdrop="false">
+
+                                    <b:panelGrid columns="1" >
+
+                                        <b:inputText value="#{ManagedTam.tipoAmortizacion.idTipoAmortizacion}" disabled="true" required="true" label="id tipo amortización "/>
+
+                                        <b:inputText value="#{ManagedTam.tipoAmortizacion.tipoAmortizacion}" required="true" label="Tipo de crédito"/>
+
+                                        <b:switch value="#{ManagedTam.tipoAmortizacion.habilitado}" label="Habilitar/Deshabilitar"/>
+
+                                    </b:panelGrid>
+
+                                    <f:facet name="footer">
+                                        <b:commandButton value="Editar" id="btnCliente1" actionListener="#{ManagedTam.editarTam()}" update="listarTam"  oncomplete ="$('.modalPseudoClass').modal('hide');" />
+
+                                        <b:commandButton value="Salir" id="btnSalir1" actionListener="#{ManagedTam.salir()}" update="listarTam" oncomplete ="$('.modalPseudoClass').modal('hide');" />
+
+
+
+
+                                    </f:facet>
+                                </b:modal>
+                            </h:form>
+                        </b:column>
+                    </b:panelGrid>
+                </div>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>

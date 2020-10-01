@@ -1,0 +1,34 @@
+
+
+plugins {
+
+    id 'java-library'
+     id 'war'
+}
+
+repositories {
+   
+    jcenter()
+}
+
+dependencies {
+  compile group: 'org.hibernate', name: 'hibernate-core', version: '5.4.12.Final'
+
+compile group: 'org.postgresql', name: 'postgresql', version: '42.2.14'
+// https://mvnrepository.com/artifact/org.wildfly.swarm/ejb
+// https://mvnrepository.com/artifact/javax.ejb/ejb-api
+// https://mvnrepository.com/artifact/org.jboss/jboss-ejb-client
+compile group: 'org.jboss', name: 'jboss-ejb-client', version: '4.0.33.Final'
+
+
+// https://mvnrepository.com/artifact/javax.faces/javax.faces-api
+compile group: 'org.glassfish', name: 'javax.faces', version: '2.4.0'
+// https://mvnrepository.com/artifact/org.primefaces/primefaces
+//compile group: 'org.primefaces', name: 'primefaces', version: '8.0'
+compile group: 'org.jboss.weld.servlet', name: 'weld-servlet-core', version: '3.1.4.Final'
+//Bootsfaces
+compile 'net.bootsfaces:bootsfaces:1.4.2'
+compile group: 'org.primefaces', name: 'primefaces', version: '8.0'
+}
+task stage(dependsOn: ['build', 'clean'])
+build.mustRunAfter clean

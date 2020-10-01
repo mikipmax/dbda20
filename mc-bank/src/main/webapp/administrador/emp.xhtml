@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:body>
+
+        <ui:composition template="./../../templates/admins/admin.xhtml">
+
+            <ui:define name="content">
+
+                <br></br>
+                <div class="container-fluid">
+
+                    <b:panelGrid id="cg" columns="2" >
+
+
+                        <b:column>
+
+                            <div class="form-group">
+                                <h1 align="center">GESTIÓN DE EMPLEADOS</h1>
+                            </div>
+
+
+
+                            <h:form id="crearEmp" >
+
+
+                                <br></br>
+                                <h2>Crear Empleado</h2>
+                                <b:panelGrid columns="2" >
+                                    <b:inputText value="#{ManagedEmpleado.persona.dni}" required="true" label="Num Cédula"/>
+
+
+
+
+                                    <b:inputText id="or" value="#{ManagedEmpleado.credenciales.usuario}"  required="true" label="Usuario" >
+
+
+
+                                    </b:inputText>
+
+
+
+
+                                    <b:inputSecret value="#{ManagedEmpleado.credenciales.clave}" required="true" label="Clave"/>
+
+                                    <b:formGroup>
+                                        <b:selectOneMenu id="cboCargoEmp"   required="true"  value="#{ManagedEmpleado.cargo.idCargo}" label="Cargo" > 
+                                            <!--                                Revisar siempre de donde se obtiene el item en este caso del empleado entonces seria empleado.getIdCargo y no cargo.getIdCargo-->
+
+                                            <f:selectItems value="#{ManagedEmpleado.listaCargos}" var="cargos"  itemLabel="#{cargos.cargo}" itemValue="#{cargos.idCargo}" />
+                                            <f:selectItem itemLabel="Seleccione un Cargo" itemValue="#{null}"  noSelectionOption="true"/>
+                                        </b:selectOneMenu >
+
+                                    </b:formGroup>
+
+
+                                    <b:commandButton value="Registrar" id="btnRegEmp" actionListener="#{ManagedEmpleado.grabarEmpleado()}"   update="listarEmpleados,crearEmp" />
+
+                                </b:panelGrid>
+
+
+
+
+                            </h:form>
+
+                            <h:form id="listarEmpleados" >
+
+                                <br></br>
+                                <h2>Listar/Editar Empleados</h2>
+
+
+
+
+
+                                <b:dataTable value="#{ManagedEmpleado.listaEmpleados}" var="empleados" >
+                                    <b:dataTableColumn label="Dni" value="#{empleados.dniEmpleado.dni} "/>
+
+                                    <b:dataTableColumn value="#{empleados.dniEmpleado.nombre}" />
+                                    <b:dataTableColumn value="#{empleados.dniEmpleado.apellido}" />
+                                    <b:dataTableColumn value="#{empleados.dniEmpleado.genero}" />
+                                    <b:dataTableColumn value="#{empleados.dniEmpleado.telefono}" />
+                                    <b:dataTableColumn value="#{empleados.dniEmpleado.celular}" />
+                                    <b:dataTableColumn value="#{empleados.dniEmpleado.email}" />
+
+
+
+
+                                    <b:dataTableColumn value="#{empleados.idCargo.cargo}" />
+
+
+                                    <b:dataTableColumn value="#{empleados.idCredenciales.usuario}"/>
+                                    <b:dataTableColumn value="#{empleados.idCredenciales.clave}"/>
+                                    <b:dataTableColumn  value="#{empleados.idCredenciales.baneado==true?'Si':'No'}"  label="Habilitado" />
+
+                                    <b:dataTableColumn label="Editar Registros"   >
+                                        <b:commandButton value="Editar" actionListener="#{ManagedEmpleado.leerFilaEmpleado(empleados)}" oncomplete="$('.modalPseudoClass2').modal();" update="EditEmpleados"/>
+                                    </b:dataTableColumn>
+
+                                </b:dataTable>
+
+                            </h:form>
+                            <h:form id="EditEmpleados" >
+                                <b:modal id="amodal2" title="Editar Cargo" styleClass="modalPseudoClass2"
+                                         closable="false"  close-on-escape="false" backdrop="false">
+
+                                    <b:panelGrid columns="2" >
+
+                                        <b:inputText value="#{ManagedEmpleado.empleado.dniEmpleado.dni}" disabled="true" required="true" label="Dni:"/>
+                                        <b:inputText value="#{ManagedEmpleado.empleado.idCredenciales.usuario}" required="true" label="Usuario:"/>
+                                        <b:inputText value="#{ManagedEmpleado.empleado.idCredenciales.clave}" required="true" label="Clave:"/>
+                                        <b:formGroup>
+                                            <b:selectOneMenu id="cboCargoEmp"   required="true"  value="#{ManagedEmpleado.empleado.idCargo}" label="Cargo" > 
+                                                <!--                                Revisar siempre de donde se obtiene el item en este caso del empleado entonces seria empleado.getIdCargo y no cargo.getIdCargo-->
+
+                                                <f:selectItems value="#{ManagedEmpleado.listaEmpAux}" var="cargos"  itemLabel="#{cargos.idCargo.cargo}" itemValue="#{cargos.idCargo}" />
+
+                                            </b:selectOneMenu >
+
+                                        </b:formGroup>
+
+                                        <b:switch value="#{ManagedEmpleado.empleado.idCredenciales.baneado}" label="Habilitar/Deshabilitar"/>
+
+
+                                    </b:panelGrid>
+
+                                    <f:facet name="footer">
+                                        <b:commandButton value="Editar" id="btnCliente" actionListener="#{ManagedEmpleado.editarEmpleado()}" update="listarEmpleados" oncomplete ="$('.modalPseudoClass2').modal('hide');" />
+
+                                        <b:commandButton value="Salir" id="btnSalirEmp" actionListener="#{ManagedEmpleado.salir()}" update="listarEmpleados"  oncomplete ="$('.modalPseudoClass2').modal('hide');"  />
+                                    </f:facet>
+                                </b:modal>
+                            </h:form>
+                        </b:column>
+
+                    </b:panelGrid>
+                </div>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>

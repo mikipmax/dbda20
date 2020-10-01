@@ -1,0 +1,133 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+
+
+
+    <h:body>
+
+        <ui:composition template="./../../templates/admins/pruebas_1.xhtml">
+
+            <ui:define name="content">
+
+
+                <aside class="col-md-3 sidebar sidebar-left">
+
+                    <b:panel look="link" title="Administración" >
+                        <b:listLinks>
+                            <b:navLink header="Mi Perfil" />
+                            <b:navLink  href="http://www.bootsfaces.net" value="Administar mi perfil"
+                                        icon="globe" iconAlign="right"/>
+                            <b:navLink></b:navLink>
+                            <b:navLink header="Empleados"/>
+                            <b:navLink href="http://getbootstrap.com/components/#navbar" value="Administrar Empleados" icon="link"></b:navLink>
+                            <b:navLink></b:navLink>
+                            <b:navLink header="Clientes"/>
+                            <b:navLink value="Administrar Clientes" outcome="/bootstrap/labelsbadge"
+                                       icon="tag" iconAlign="right"/>
+                            <b:navLink header="Empleados"/>
+                            <b:navLink value="Administrar Empleados" outcome="/jquery-ui/slider" iconAwesome="sliders"/>
+                            <b:navLink header="Tipos de Cargo"/>
+                            <b:navCommandLink value="Administar Cargos" 
+                                              icon="tag" iconAlign="right" />
+
+
+
+                        </b:listLinks>
+                    </b:panel>
+
+                </aside>
+
+                <article class="col-md-8 maincontent">
+
+
+
+                    <b:panelGrid id="cg" columns="1"  >
+
+
+                        <b:column>
+
+
+
+
+                            <h:form id="crearCargo"  >
+
+
+                                <h:panelGrid columns="1" style="margin: 0 auto">
+
+                                    <h2 >Crear Cargo</h2>
+
+                                    <b:inputText id="a" value="#{ManagedCargo.cargo.idCargo}" required="true" label="id cargo:"/>
+
+                                    <b:inputText id="b" value="#{ManagedCargo.cargo.cargo}" required="true" label="Tipo de cargo:"/>
+
+
+
+                                    <b:commandButton value="Registrar" id="btnCliente" actionListener="#{ManagedCargo.grabarCargo()}" update="crearCargo,listarCargo" large-screen="full-width" />
+
+
+
+                                </h:panelGrid>
+
+
+
+
+                            </h:form>
+
+                            <h:form id="listarCargo">
+
+                                <br></br>
+                                <b:dataTable value="#{ManagedCargo.listaCargos}" var="cargos">
+                                    <b:dataTableColumn value="#{cargos.idCargo}"/>
+                                    <b:dataTableColumn value="#{cargos.cargo}"/>
+
+                                    <b:dataTableColumn label="Editar Registros"   >
+                                        <b:commandButton value="Editar" actionListener="#{ManagedCargo.leerFilaCargo(cargos)}" oncomplete="$('.modalPseudoClass2').modal();" update="myFormID"/>
+                                    </b:dataTableColumn>
+
+
+                                </b:dataTable>
+
+
+                            </h:form>
+
+                            <h:form id="myFormID">
+                                <b:modal id="amodal2" title="Editar Cargo" styleClass="modalPseudoClass2"
+                                         closable="false"  close-on-escape="false" backdrop="false">
+
+                                    <b:panelGrid columns="1" >
+
+                                        <b:inputText value="#{ManagedCargo.cargo.idCargo}" disabled="true" required="true" label="id cargo:"/>
+
+                                        <b:inputText value="#{ManagedCargo.cargo.cargo}" required="true" label="Tipo de cargo:"/>
+                                        <b:switch value="#{ManagedCargo.cargo.habilitado}" label="Habilitar/Deshabilitar"/>
+
+                                    </b:panelGrid>
+
+                                    <f:facet name="footer">
+                                        <b:commandButton value="Editar" id="btnCliente" actionListener="#{ManagedCargo.editarCargos()}" update="listarCargo" />
+                                        <b:button value="Salir" look="primary" dismiss="modal" />
+                                    </f:facet>
+                                </b:modal>
+                            </h:form>
+
+                        </b:column>
+                        <br></br>
+                        <br></br>
+                    </b:panelGrid>
+
+                </article>
+
+
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>
