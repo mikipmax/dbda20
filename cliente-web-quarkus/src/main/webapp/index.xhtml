@@ -1,0 +1,179 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:b="http://bootsfaces.net/ui">
+<h:head>
+	<title>Prueba Distribuida</title>
+</h:head>
+<h:body>
+	<b:container>
+		<h:form id="formLista">
+			<b:growl id="growlCrearCustomer" placementFrom="top"
+				global-only="false" show-summary="true" allow-dismiss="true"
+				animation-enter="animated bounceInDown"
+				animation-exit="animated flipOutX" escape="true" />
+			<b:tabView pills="true"
+				contentStyle="border: 0px solid #ddd;padding:10px">
+				<b:tab title="Crud Customer">
+
+					<b:dataTable value="#{customerBean.lista}" var="customer"
+						caption="Lista de los customers.">
+
+						<b:dataTableColumn value="#{customer.name}" />
+						<b:dataTableColumn value="#{customer.surname}" />
+						<b:dataTableColumn label="Editar">
+							<b:commandButton icon="pencil"
+								actionListener="#{customerBean.filaSeleccionada(customer)}"
+								oncomplete="$('.modalEditarCustomer').modal('show')"
+								update="idModalEditarCustomer" />
+						</b:dataTableColumn>
+						<b:dataTableColumn label="Eliminar">
+							<b:commandButton icon="trash"
+								actionListener="#{customerBean.eliminar(customer)}"
+								update="formLista" />
+						</b:dataTableColumn>
+					</b:dataTable>
+					<b:button onclick="$('.modalCrearCustomer').modal('show')"
+						value="Crear nuevo customer" look="info" />
+
+				</b:tab>
+				<b:tab title="Crud Orders">
+					<b:dataTable value="#{ordersBean.lista}" var="orders"
+						caption="Lista de los orders.">
+
+						<b:dataTableColumn value="#{orders.item}" />
+						<b:dataTableColumn value="#{orders.price}" />
+						<b:dataTableColumn value="#{orders.customer.id}" />
+						<b:dataTableColumn label="Editar">
+							<b:commandButton icon="pencil"
+								actionListener="#{ordersBean.filaSeleccionada(orders)}"
+								oncomplete="$('.modalEditarOrders').modal('show')"
+								update="idModalEditarOrders" />
+						</b:dataTableColumn>
+						<b:dataTableColumn label="Eliminar">
+							<b:commandButton icon="trash"
+								actionListener="#{ordersBean.eliminar(orders)}"
+								update="formLista" />
+						</b:dataTableColumn>
+					</b:dataTable>
+					<b:button onclick="$('.modalCrearOrders').modal('show')"
+						value="Crear nuevo Orders" look="info" />
+
+				</b:tab>
+
+			</b:tabView>
+		</h:form>
+
+
+		<b:modal title="Modal Crear Customer" styleClass="modalCrearCustomer"
+			id="idModalCrearCustomer">
+			<b:form id="formCrearCustomer">
+
+				<b:panelGrid columns="1" id="test">
+
+					<b:inputText value="#{customerBean.customer.name}" label="Name: "
+						required="true" requiredMessage="Ingrese su nombre"
+						large-screen="two-thirds" />
+					<b:inputText value="#{customerBean.customer.surname}"
+						label="Surname: " required="true"
+						requiredMessage="Ingrese su apellido" large-screen="two-thirds" />
+					<b:column>
+						<b:button value="Close" dismiss="modal" />
+						<b:commandButton value="Crear" look="primary" dismiss="modal"
+							oncomplete="$('.modalCrearCustomer').modal('hide')"
+							actionListener="#{customerBean.crear}"
+							update="formCrearCustomer :formLista " />
+					</b:column>
+				</b:panelGrid>
+			</b:form>
+		</b:modal>
+
+
+
+		<b:modal title="Modal Editar Customer"
+			styleClass="modalEditarCustomer" id="idModalEditarCustomer">
+			<b:form>
+				<b:panelGrid columns="1">
+					<b:inputText value="#{customerBean.customerSeleccionado.name}"
+						label="Name: " required="true" requiredMessage="Ingrese su nombre"
+						large-screen="two-thirds" />
+					<b:inputText value="#{customerBean.customerSeleccionado.surname}"
+						label="Surname: " required="true"
+						requiredMessage="Ingrese su apellido" large-screen="two-thirds" />
+					<b:column>
+						<b:button value="Close" dismiss="modal" />
+						<b:commandButton value="Guardar Cambios" look="primary"
+							oncomplete="$('.modalEditarCustomer').modal('hide')"
+							actionListener="#{customerBean.actualizar}" update=":formLista" />
+					</b:column>
+				</b:panelGrid>
+			</b:form>
+		</b:modal>
+
+
+
+		<b:modal title="Modal Crear Orders" styleClass="modalCrearOrders"
+			id="idModalCrearOrders">
+			<b:form id="formCrearOrders">
+				<b:panelGrid columns="1">
+					<b:inputText value="#{ordersBean.orders.item}" label="Item: "
+						required="true" requiredMessage="Ingrese Item"
+						large-screen="two-thirds" />
+					<b:inputText value="#{ordersBean.orders.price}" label="Price: "
+						required="true" requiredMessage="Ingrese precio (. para decimal)"
+						large-screen="two-thirds" />
+					<b:column>
+						<b:selectOneMenu value="#{ordersBean.customer.id}"
+							label="Seleccione customer">
+							<f:selectItems value="#{ordersBean.listaCustomers}"
+								var="customer" itemValue="#{customer.id}"
+								itemLabel="#{customer.name} #{customer.surname}" />
+						</b:selectOneMenu>
+					</b:column>
+
+					<b:column>
+						<b:button value="Close" dismiss="modal" />
+						<b:commandButton value="Crear" look="primary" dismiss="modal"
+							oncomplete="$('.modalCrearOrders').modal('hide')"
+							actionListener="#{ordersBean.crear}"
+							update="formCrearOrders :formLista" />
+					</b:column>
+				</b:panelGrid>
+			</b:form>
+		</b:modal>
+
+
+
+		<b:modal title="Modal Editar Orders" styleClass="modalEditarOrders"
+			id="idModalEditarOrders">
+			<b:form>
+				<b:panelGrid columns="1">
+
+					<b:inputText value="#{ordersBean.ordersSeleccionado.item}"
+						label="Item: " required="true" requiredMessage="Ingrese ítem"
+						large-screen="two-thirds" />
+					<b:inputText value="#{ordersBean.ordersSeleccionado.price}"
+						label="Price: " required="true"
+						requiredMessage="Ingrese su apellido" large-screen="two-thirds" />
+					<b:column>
+						<b:selectOneMenu
+							value="#{ordersBean.ordersSeleccionado.customerId}"
+							label="Seleccione customer">
+							<f:selectItems value="#{ordersBean.listaCustomers}"
+								var="customer" itemValue="#{customer.id}"
+								itemLabel="#{customer.name} #{customer.surname}" />
+						</b:selectOneMenu>
+					</b:column>
+					<b:column>
+						<b:button value="Close" dismiss="modal" />
+						<b:commandButton value="Guardar Cambios" look="primary"
+							oncomplete="$('.modalEditarOrders').modal('hide')"
+							actionListener="#{ordersBean.actualizar}" update=":formLista" />
+					</b:column>
+				</b:panelGrid>
+			</b:form>
+		</b:modal>
+	</b:container>
+</h:body>
+</html>

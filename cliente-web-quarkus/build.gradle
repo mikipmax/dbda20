@@ -1,0 +1,35 @@
+
+
+plugins {
+   id 'java-library'
+    id 'war'
+    id 'eclipse-wtp' //para agregarle al tomcat 
+}
+
+repositories {
+ 
+    jcenter()
+}
+dependencies {
+
+
+
+
+//Resteasy para el cliente
+compile group: 'org.jboss.resteasy', name: 'resteasy-client', version: '4.5.5.Final'
+compile group: 'org.jboss.resteasy', name: 'resteasy-jackson2-provider', version: '4.5.5.Final' //Para que soporte formato Json
+
+//Para cdi
+compile group: 'org.jboss.weld.servlet', name: 'weld-servlet-core', version: '3.1.4.Final'
+
+//Bootsfaces
+
+compile 'net.bootsfaces:bootsfaces:1.5.0'
+      // https://mvnrepository.com/artifact/javax.faces/javax.faces-api
+compile group: 'org.glassfish', name: 'javax.faces', version: '2.4.0'                   
+
+
+}
+
+task stage(dependsOn: ['build', 'clean'])
+build.mustRunAfter clean
