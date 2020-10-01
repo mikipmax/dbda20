@@ -1,0 +1,36 @@
+
+plugins {
+  
+    id 'java-library'
+    id 'io.quarkus'  version '1.7.0.Final'
+}
+
+repositories {
+  
+    jcenter()
+}
+ext {
+quarkusVersion='1.7.0.Final'
+}
+group 'com.distribuida'
+version '1.0.0-SNAPSHOT'
+dependencies {
+implementation platform("io.quarkus:quarkus-universe-bom:${quarkusVersion}")
+  compile group: 'org.postgresql', name: 'postgresql', version: '42.2.14'
+    implementation 'io.quarkus:quarkus-jdbc-postgresql'
+    implementation 'io.quarkus:quarkus-hibernate-orm-panache'
+  
+implementation 'io.quarkus:quarkus-resteasy-jackson'
+    implementation 'io.quarkus:quarkus-resteasy'
+
+
+compile group: 'org.jboss.resteasy', name: 'resteasy-client', version: '4.5.5.Final'
+compile group: 'org.jboss.resteasy', name: 'resteasy-jackson2-provider', version: '4.5.5.Final' //Para que soporte formato Json
+}
+task buildUberJar(type: io.quarkus.gradle.tasks.QuarkusBuild, dependsOn: build) {
+    uberJar = true
+}
+
+
+task stage(dependsOn: ['buildUberJar','clean'])
+buildUberJar.mustRunAfter clean

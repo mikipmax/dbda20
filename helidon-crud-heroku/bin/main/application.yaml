@@ -1,0 +1,14 @@
+db:
+  source: "jdbc" 
+  connection:
+    
+    url: ${cadena}
+    username: ${usuario}
+    password: ${password}
+              
+  statements: 
+    select-personas: "SELECT id,nombre,direccion,correo FROM persona"
+    select-persona-id: "SELECT id,nombre,direccion,correo FROM persona WHERE id=:id"
+    insert-persona: "INSERT INTO persona(id, nombre, direccion, correo) VALUES (:id,:nombre, :direccion, :correo)"
+    update-persona: "UPDATE persona SET nombre=:nombre, direccion=:direccion, correo=:correo WHERE id=:id"
+    delete-persona: "DELETE FROM persona WHERE id=:id"

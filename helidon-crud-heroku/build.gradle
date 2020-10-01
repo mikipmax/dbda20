@@ -1,0 +1,56 @@
+
+
+
+plugins {
+    // Apply the java-library plugin to add support for Java Library
+    id 'java-library'
+    
+    id 'com.github.johnrengelman.shadow' version '6.0.0'
+   
+    
+}
+
+repositories {
+    // Use jcenter for resolving dependencies.
+    // You can declare any Maven/Ivy/file repository here.
+    jcenter()
+}
+
+ext {
+helidonversion= '2.0.1'
+}
+dependencies {
+
+// import Helidon dependency management
+    implementation platform("io.helidon:helidon-dependencies:${project.helidonversion}")
+// https://mvnrepository.com/artifact/io.helidon.microprofile.server/helidon-microprofile-server
+compile group: 'io.helidon.microprofile.server', name: 'helidon-microprofile-server', version: '2.0.1'
+// https://mvnrepository.com/artifact/org.glassfish.jersey.media/jersey-media-json-jackson
+compile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '2.31'
+
+// https://mvnrepository.com/artifact/io.helidon.dbclient/helidon-dbclient
+compile group: 'io.helidon.dbclient', name: 'helidon-dbclient', version: '2.0.1'
+// https://mvnrepository.com/artifact/io.helidon.dbclient/helidon-dbclient-jdbc
+compile group: 'io.helidon.dbclient', name: 'helidon-dbclient-jdbc', version: '2.0.1'
+// https://mvnrepository.com/artifact/org.postgresql/postgresql  driver de postgresql
+compile group: 'org.postgresql', name: 'postgresql', version: '42.2.14'
+
+
+}
+jar {
+	manifest {
+//Le indico la clase principal de ejecucion al jar
+	attributes "Main-Class":"io.helidon.microprofile.server.Main" 
+	}
+}
+
+
+
+shadowJar{
+	mergeServiceFiles()
+}
+
+
+
+task stage(dependsOn: ['shadowJar','clean'])
+shadowJar.mustRunAfter clean
