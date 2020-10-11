@@ -1,0 +1,30 @@
+
+plugins {
+  
+    id 'java-library'
+    id 'io.quarkus'  version '1.7.0.Final'
+}
+
+repositories {
+  
+    jcenter()
+}
+ext {
+quarkusVersion='1.7.0.Final'
+}
+group 'com.distribuida'
+version '1.0.0-SNAPSHOT'
+dependencies {
+implementation platform("io.quarkus:quarkus-universe-bom:${quarkusVersion}")
+ 
+  
+implementation 'io.quarkus:quarkus-resteasy-jackson'
+    implementation 'io.quarkus:quarkus-resteasy'
+
+
+compile group: 'org.jboss.resteasy', name: 'resteasy-client', version: '4.5.5.Final'
+compile group: 'org.jboss.resteasy', name: 'resteasy-jackson2-provider', version: '4.5.5.Final' 
+}
+task buildFatJar(type: io.quarkus.gradle.tasks.QuarkusBuild, dependsOn: build) {
+    uberJar = true
+}

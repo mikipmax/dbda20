@@ -1,0 +1,148 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/template.xhtml">
+	<ui:define name="contenido">
+
+		<h:form id="lista">
+
+
+			<h:dataTable styleClass="table table-dark"
+				value="#{ordersBean.lista}" var="orders">
+
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Item" />
+					</f:facet>
+					<h:outputText value="#{orders.item}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Price" />
+					</f:facet>
+					<h:outputText value="#{orders.price}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Customer" />
+					</f:facet>
+					<h:outputText
+						value="#{orders.customer.name} #{orders.customer.surname}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Opciones" />
+					</f:facet>
+
+					<h:commandButton value="Editar"
+						actionListener="#{ordersBean.filaSeleccionada(orders)}"
+						styleClass="btn btn-outline-success my-2 my-sm-0">
+
+						<f:ajax onevent="aFunction" render="modalEditar" />
+					</h:commandButton>
+
+				</h:column>
+				<h:column>
+					<f:facet name="header">
+						<h:outputText value="Opciones" />
+					</f:facet>
+
+
+					<h:commandButton value="Eliminar"
+						styleClass="btn btn-outline-success my-2 my-sm-0"
+						actionListener="#{ordersBean.eliminar(orders)}">
+						<f:ajax execute="@form" render="@form" />
+					</h:commandButton>
+
+
+				</h:column>
+			</h:dataTable>
+<h:messages layout="table" />
+		</h:form>
+		<div class="modal fade" id="staticBackdrop" data-backdrop="static"
+			data-keyboard="false" tabindex="-1"
+			aria-labelledby="staticBackdropLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="staticBackdropLabel">Editar
+							Orders</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">x</span>
+						</button>
+					</div>
+					<h:form id="modalEditar">
+						<div class="modal-body bg-dark">
+
+
+
+
+							<div class="card text-white bg-dark">
+								<div class="card-header">Editar Orders</div>
+								<div class="card-body">
+
+									<div class="form-group row">
+										<h:outputLabel for="txtNombre" class="col-sm-4 col-form-label"
+											value="Item" />
+
+										<div class="col-sm-8">
+
+											<h:inputText id="txtNombre"
+												value="#{ordersBean.ordersSeleccionado.item}"
+												class="form-control" required="true" label="Item" />
+										</div>
+
+									</div>
+									<div class="form-group row">
+
+										<h:outputLabel for="txtAppe" class="col-sm-4 col-form-label"
+											value="Precio" />
+										<div class="col-sm-8">
+											<h:inputText id="txtAppe"
+												value="#{ordersBean.ordersSeleccionado.price}"
+												required="true" class="form-control" label="Precio" />
+										</div>
+									</div>
+									<div class="form-group row">
+										<h:outputLabel for="selectOneMenu"
+											class="col-sm-4 col-form-label" value="Customer" />
+										<div class="col-sm-8">
+											<h:selectOneMenu id="selectOneMenu"
+												label="Seleccion customer" value="#{ordersBean.customer.id}"
+												styleClass="form-control">
+
+												<f:selectItems value="#{ordersBean.listaCustomers}"
+													var="customer" itemValue="#{customer.id}"
+													itemLabel="#{customer.name} #{customer.surname}" />
+
+											</h:selectOneMenu>
+										</div>
+									</div>
+
+								</div>
+							</div>
+
+
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">Cerrar</button>
+							<h:commandButton value="Actualizar"
+								onclick="$('#staticBackdrop').modal('hide');"
+								actionListener="#{ordersBean.actualizar}"
+								class="btn btn-primary mb-2">
+								<f:ajax execute="@form" render="lista" />
+							</h:commandButton>
+						</div>
+					</h:form>
+				</div>
+			</div>
+		</div>
+
+	</ui:define>
+
+
+
+</ui:composition>

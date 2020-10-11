@@ -1,0 +1,27 @@
+
+plugins {
+  
+    id 'java-library'
+    id 'io.quarkus'  version '1.7.0.Final'
+}
+
+repositories {
+  
+    jcenter()
+}
+ext {
+quarkusVersion='1.7.0.Final'
+}
+group 'com.distribuida'
+version '1.0.0-SNAPSHOT'
+dependencies {
+implementation platform("io.quarkus:quarkus-universe-bom:${quarkusVersion}")
+
+// https://mvnrepository.com/artifact/io.quarkus/quarkus-undertow
+compile group: 'io.quarkus', name: 'quarkus-undertow', version: '1.8.1.Final'
+   
+}
+task buildUberJar(type: io.quarkus.gradle.tasks.QuarkusBuild, dependsOn: build) {
+    uberJar = true
+}
+

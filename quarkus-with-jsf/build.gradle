@@ -1,0 +1,41 @@
+
+plugins {
+  
+    id 'java-library'
+    id 'io.quarkus'  version '1.7.0.Final'
+}
+
+repositories {
+  
+    jcenter()
+}
+ext {
+quarkusVersion='1.7.0.Final'
+}
+group 'com.distribuida'
+version '1.0.0-SNAPSHOT'
+dependencies {
+implementation platform("io.quarkus:quarkus-universe-bom:${quarkusVersion}")
+
+
+compile group: 'org.primefaces', name: 'primefaces', version: '8.0'
+// https://mvnrepository.com/artifact/javax.servlet.jsp/javax.servlet.jsp-api
+// https://mvnrepository.com/artifact/javax.servlet.jsp/jsp-api
+// https://mvnrepository.com/artifact/javax.servlet.jsp/javax.servlet.jsp-api
+// https://mvnrepository.com/artifact/javax.servlet.jsp/javax.servlet.jsp-api
+//compile group: 'org.jboss.spec.javax.servlet.jstl', name: 'jboss-jstl-api_1.2_spec', version: '1.1.4.Final'
+
+compile group: 'io.quarkus', name: 'quarkus-undertow', version: '1.8.1.Final'
+// https://mvnrepository.com/artifact/org.glassfish.web/el-impl
+//compile group: 'org.glassfish.web', name: 'el-impl', version: '2.2'
+// https://mvnrepository.com/artifact/org.apache.myfaces.core/myfaces-api
+// https://mvnrepository.com/artifact/org.apache.myfaces.core.extensions.quarkus/myfaces-quarkus
+compile group: 'org.apache.myfaces.core.extensions.quarkus', name: 'myfaces-quarkus', version: '2.3-next-M4'
+
+
+	//compile group: 'org.glassfish', name: 'javax.faces', version: '2.4.0'      
+}
+task buildUberJar(type: io.quarkus.gradle.tasks.QuarkusBuild, dependsOn: build) {
+    uberJar = true
+}
+

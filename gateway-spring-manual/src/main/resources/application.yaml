@@ -1,0 +1,23 @@
+server:
+  port: 9090
+
+spring:
+  cloud:
+    gateway:
+      routes:
+      - id: posts
+        uri: http://localhost:8080/
+        predicates:
+        - Path=/posts/**
+        - Weight=group1, 3
+      - id: comments
+        uri: http://localhost:8081/
+        predicates:
+        - Path=/comments/**
+        - Weight=group1, 3
+      - id: typicode
+        uri: http://localhost:8082/
+        predicates:
+        - Path=/comments/**
+        - Weight=group1, 3 
+   

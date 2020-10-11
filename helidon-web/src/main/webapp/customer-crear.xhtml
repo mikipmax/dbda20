@@ -1,0 +1,58 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/WEB-INF/template.xhtml">
+	<ui:define name="contenido">
+<br/>
+<br/>
+		<h:form>
+			<h:messages layout="table" />
+		
+			<div align="center">
+			
+		
+					<div class="card text-white bg-dark mb-3 " style="width: 18rem;">
+						<div class="card-header">Crear Customer</div>
+						<div class="card-body">
+
+							<div class="form-group row">
+								<h:outputLabel for="txtNombre" class="col-sm-4 col-form-label"
+									value="Nombre" />
+
+								<div class="col-sm-8">
+
+									<h:inputText id="txtNombre"
+										value="#{customerBean.customer.name}" class="form-control"
+										required="true" label="Nombre"/>
+								</div>
+
+							</div>
+							<div class="form-group row">
+
+								<h:outputLabel for="txtAppe" class="col-sm-4 col-form-label"
+									value="Apellido" />
+								<div class="col-sm-8">
+									<h:inputText id="txtAppe"
+										value="#{customerBean.customer.surname}" required="true"
+										class="form-control" label="Apellido" />
+								</div>
+							</div>
+							<h:commandButton value="Crear"
+								actionListener="#{customerBean.crear}"
+								class="btn btn-primary mb-2">
+								<f:ajax execute="@form" render="@form" />
+							</h:commandButton>
+		
+						</div>
+					</div>
+		
+		
+			</div>
+		</h:form>
+		
+	</ui:define>
+
+
+
+</ui:composition>
